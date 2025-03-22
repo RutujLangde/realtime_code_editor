@@ -84,6 +84,6 @@ app.get("*", (req, res) => {
 })
 
 server.listen(port,  () => { // Allow external devices
-    console.log(`Server running at http://192.168.1.100:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
 
