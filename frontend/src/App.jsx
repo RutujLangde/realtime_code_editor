@@ -5,7 +5,7 @@ import Editor from '@monaco-editor/react'
 
 
 
-const socket = io("http://localhost:5000/", { transports: ["websocket"] });
+const socket = io("https://realtime-code-editor-ydpw.onrender.com", { transports: ["websocket"] });
 
 
 
