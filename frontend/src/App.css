@@ -12,6 +12,26 @@ body {
   color: #333;
 }
 
+.cursor-marker {
+  position: absolute;
+  width: 2px;
+  background: red;
+  height: 1em;
+}
+
+.cursor-label::after {
+  content: attr(data-username);
+  position: absolute;
+  top: -1.2em;
+  left: 0;
+  background: red;
+  color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+
 .join-container {
   display: flex;
   justify-content: center;
