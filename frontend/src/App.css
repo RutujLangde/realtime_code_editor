@@ -89,3 +89,22 @@ body {
   @apply bg-blue-700;
 }
 
+.text-glow {
+  text-shadow: 0 0 8px #00ffff, 0 0 20px #00ffff;
+}
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

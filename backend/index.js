@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
         console.log(`User ${userName} is trying to join room: ${roomId}`);
 
         if (!roomId || !userName) {
-            console.log("Invalid room ID or username.");
+            // console.log("Invalid room ID or username.");
             return;
         }
 
@@ -34,6 +34,7 @@ io.on("connection", (socket) => {
 
         if (!rooms.has(roomId)) {
             rooms.set(roomId, new Set());
+            // return;
         }
         rooms.get(roomId).add(userName);
 
