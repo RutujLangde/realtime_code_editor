@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import socket from '../socket';
-import Compiler from './compiler';
+import Compiler from './Compiler';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 
 
