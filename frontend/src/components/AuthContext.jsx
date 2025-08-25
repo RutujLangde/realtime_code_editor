@@ -39,7 +39,8 @@ export const AuthProvider = ({ children }) => {
     const res = await axios.post('https://realtime-code-editor-ydpw.onrender.com/api/auth/signup', formData, {
       withCredentials: true,
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data', 
+        
       },
     });
     localStorage.setItem('token', res.data.token);
