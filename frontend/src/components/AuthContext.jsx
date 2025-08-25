@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   
 
   useEffect(() => {
-  axios.get('http://localhost:5000/api/auth/me', {
+  axios.get('https://realtime-code-editor-ydpw.onrender.com/api/auth/me', {
     withCredentials: true
   })
     .then(res => {
@@ -22,21 +22,21 @@ export const AuthProvider = ({ children }) => {
 
 
   const login = async (email, password) => {
-  const res = await axios.post('http://localhost:5000/api/auth/signin', { email, password }, {
+  const res = await axios.post('https://realtime-code-editor-ydpw.onrender.com/api/auth/signin', { email, password }, {
     withCredentials: true,
   });
 
   localStorage.setItem('token', res.data.token);
 
   // Get user from /me
-  const me = await axios.get('http://localhost:5000/api/auth/me', { withCredentials: true });
+  const me = await axios.get('https://realtime-code-editor-ydpw.onrender.com/api/auth/me', { withCredentials: true });
   setUser(me.data); // ✅ set actual user data
 };
 
 
  const register = async (formData) => {
   try {
-    const res = await axios.post('http://localhost:5000/api/auth/signup', formData, {
+    const res = await axios.post('https://realtime-code-editor-ydpw.onrender.com/api/auth/signup', formData, {
       withCredentials: true,
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -49,10 +49,6 @@ export const AuthProvider = ({ children }) => {
     throw err;
   }
 };
-
-
-
-
   
 
   return (
