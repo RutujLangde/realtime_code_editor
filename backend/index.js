@@ -3,11 +3,22 @@ import http from "http";
 import { Server } from "socket.io";
 import path from "path";
 import axios from "axios";
-
+import connectDB from "./config/db.js";
+import router from "./routers/authRouters.js";
+// import cros from 'cros';
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import cors from 'cors';
 
 
 const app = express();
 const server = http.createServer(app);
+
+
+
+connectDB();
+
+// app.use(cors());
 
 const io = new Server(server, {
     cors: {
@@ -15,6 +26,28 @@ const io = new Server(server, {
         // methods: ["GET", "POST"]
     },
 });
+
+
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true, // allow cookies and auth headers
+}));
+
+
+app.use(express.json()); // Built-in body parser
+app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
+app.use("/api/auth", router);
+
+// app.use(checkForAuthenticationCookies('rutuj'));
+// app.use(express.static(path.resolve('./public')))
+// app.use(express.static(path.resolve('./public')));
+
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, "public")));
+
+
 
 const rooms = new Map();
 const roomCode = new Map();

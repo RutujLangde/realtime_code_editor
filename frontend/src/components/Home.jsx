@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-
 import { Typewriter } from 'react-simple-typewriter';
 
+import { AuthProvider, AuthContext  } from './AuthContext';
+
 import Navbar from './Navbar';
+
+import logomain from "../assets/image.png";
 
 
 const Home = () => {
@@ -13,11 +16,26 @@ const Home = () => {
   const [recentRooms, setRecentRooms] = useState([]);
   const navigate = useNavigate();
 
+  // user infromation retrival from AuthContext
+  const {user} = useContext(AuthContext);
+
+  // console.log("this one is from home",user);
+
   // Load from localStorage on mount
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('recentRooms') || '[]');
     setRecentRooms(stored.slice(0, 5));
   }, []);
+
+  useEffect(() => {
+    document.title = "Dashboard - NebNews";
+    const favicon = document.querySelector("link[rel='icon']");
+    if (favicon) {
+      favicon.href = {logomain}; // Put your new icon in `public/`
+    }
+
+  }, []);
+
 
   // Keyboard Shortcuts
   useEffect(() => {
@@ -63,12 +81,12 @@ const Home = () => {
   };
 
   const rejoinRoom = (id, name) => {
-    navigate(`/editor/${id}`, { state: { userName: name } });
+    navigate(`/editor/${id}`, { state: { userName: name }});
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-      <Navbar/>
+      <Navbar user ={user}/>
 
 
       <div className="text-center mt-10 text-green-400 font-mono text-xl">
